@@ -37,13 +37,13 @@ class DiscordRenderer(HTMLRenderer):
         return '<br />\n'
 
     def render_inline_code(self, token):
-        template = '<code class="pre--inline">{}</code>'
+        template = '<span class="pre pre--inline">{}</span>'
         inner = html.escape(token.children[0].content)
         return template.format(inner)
 
     # TODO: change
     def render_block_code(self, token):
-        template = '<pre class="pre--multiline"><code{attr}>{inner}</code></pre>'
+        template = '<div class="pre pre--multiline"><code{attr}>{inner}</code></div>'
         if token.language:
             attr = ' class="{}"'.format('language-{}'.format(self.escape_html(token.language)))
         else:
